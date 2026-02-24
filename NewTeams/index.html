@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewTeams - Microsoft Teams Style Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>📱 NewTeams</h2>
+        </div>
+        <nav class="nav-menu">
+            <button class="nav-item active" data-view="dashboard">
+                <span class="icon">🏠</span>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-view="chat">
+                <span class="icon">💬</span>
+                <span>Chat</span>
+            </button>
+            <button class="nav-item" data-view="teams">
+                <span class="icon">👥</span>
+                <span>Teams</span>
+            </button>
+            <button class="nav-item" data-view="calendar">
+                <span class="icon">📅</span>
+                <span>Calendar</span>
+            </button>
+            <button class="nav-item" data-view="files">
+                <span class="icon">📁</span>
+                <span>Files</span>
+            </button>
+            <button class="nav-item" data-view="apps">
+                <span class="icon">⚡</span>
+                <span>Apps</span>
+            </button>
+        </nav>
+        <div class="theme-switcher">
+            <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <header class="top-bar">
+            <div class="search-bar">
+                <input type="text" placeholder="Search in NewTeams" id="searchInput">
+            </div>
+            <div class="user-profile">
+                <span id="userName">Guest User</span>
+                <div class="avatar">👤</div>
+            </div>
+        </header>
+
+        <!-- Dashboard View -->
+        <div id="dashboard" class="view active">
+            <div class="content-header">
+                <h1>Welcome to NewTeams</h1>
+                <p class="subtitle">Your collaborative workspace</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3>24</h3>
+                        <p>Team Members</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-info">
+                        <h3>156</h3>
+                        <p>Messages Today</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <h3>12</h3>
+                        <p>Active Projects</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3>87%</h3>
+                        <p>Completion Rate</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-section">
+                <h2>Recent Activity</h2>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">💬</div>
+                        <div class="activity-content">
+                            <h4>New message in Marketing Team</h4>
+                            <p>Sarah Johnson: "Let's review the Q1 report"</p>
+                            <span class="timestamp">5 minutes ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">📁</div>
+                        <div class="activity-content">
+                            <h4>File uploaded</h4>
+                            <p>Project_Proposal_Final.docx</p>
+                            <span class="timestamp">1 hour ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">📅</div>
+                        <div class="activity-content">
+                            <h4>Meeting scheduled</h4>
+                            <p>Team Standup - Tomorrow at 10:00 AM</p>
+                            <span class="timestamp">3 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat View -->
+        <div id="chat" class="view">
+            <div class="content-header">
+                <h1>Chat</h1>
+            </div>
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <div class="chat-search">
+                        <input type="text" placeholder="Search conversations">
+                    </div>
+                    <div class="conversation-list">
+                        <div class="conversation-item active">
+                            <div class="avatar">👨‍💼</div>
+                            <div class="conversation-info">
+                                <h4>John Smith</h4>
+                                <p>Let's discuss the project...</p>
+                            </div>
+                            <span class="time">2m</span>
+                        </div>
+                        <div class="conversation-item">
+                            <div class="avatar">👩‍💻</div>
+                            <div class="conversation-info">
+                                <h4>Marketing Team</h4>
+                                <p>Sarah: Great work everyone!</p>
+                            </div>
+                            <span class="time">15m</span>
+                        </div>
+                        <div class="conversation-item">
+                            <div class="avatar">👨‍🔬</div>
+                            <div class="conversation-info">
+                                <h4>Dev Team</h4>
+                                <p>Code review completed</p>
+                            </div>
+                            <span class="time">1h</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-main">
+                    <div class="chat-header">
+                        <div class="avatar">👨‍💼</div>
+                        <h3>John Smith</h3>
+                    </div>
+                    <div class="messages" id="messageContainer">
+                        <div class="message received">
+                            <div class="message-content">
+                                <p>Hey! How's the project coming along?</p>
+                                <span class="message-time">10:30 AM</span>
+                            </div>
+                        </div>
+                        <div class="message sent">
+                            <div class="message-content">
+                                <p>Great! We're making good progress. Should be done by end of week.</p>
+                                <span class="message-time">10:32 AM</span>
+                            </div>
+                        </div>
+                        <div class="message received">
+                            <div class="message-content">
+                                <p>Perfect! Let me know if you need any resources.</p>
+                                <span class="message-time">10:33 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message-input">
+                        <input type="text" placeholder="Type a message..." id="chatInput">
+                        <button class="send-btn" id="sendMessage">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teams View -->
+        <div id="teams" class="view">
+            <div class="content-header">
+                <h1>Teams</h1>
+                <button class="primary-btn">+ Create Team</button>
+            </div>
+            <div class="teams-grid">
+                <div class="team-card">
+                    <div class="team-header">
+                        <h3>🚀 Marketing Team</h3>
+                        <span class="member-count">12 members</span>
+                    </div>
+                    <p>Working on Q1 2026 campaigns and social media strategy</p>
+                    <div class="team-channels">
+                        <div class="channel-item">📢 General</div>
+                        <div class="channel-item">💡 Ideas</div>
+                        <div class="channel-item">📊 Analytics</div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-header">
+                        <h3>💻 Development</h3>
+                        <span class="member-count">8 members</span>
+                    </div>
+                    <p>Building the next generation of our platform</p>
+                    <div class="team-channels">
+                        <div class="channel-item">📢 General</div>
+                        <div class="channel-item">🐛 Bug Reports</div>
+                        <div class="channel-item">🎨 Design</div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-header">
+                        <h3>📈 Sales</h3>
+                        <span class="member-count">15 members</span>
+                    </div>
+                    <p>Driving revenue and customer success</p>
+                    <div class="team-channels">
+                        <div class="channel-item">📢 General</div>
+                        <div class="channel-item">🎯 Targets</div>
+                        <div class="channel-item">🤝 Deals</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar View -->
+        <div id="calendar" class="view">
+            <div class="content-header">
+                <h1>Calendar</h1>
+                <button class="primary-btn">+ New Meeting</button>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prevMonth">◀</button>
+                    <h2 id="currentMonth">February 2026</h2>
+                    <button id="nextMonth">▶</button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+                <div class="upcoming-events">
+                    <h3>Upcoming Events</h3>
+                    <div class="event-item">
+                        <div class="event-time">10:00 AM</div>
+                        <div class="event-info">
+                            <h4>Team Standup</h4>
+                            <p>Daily sync with the team</p>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-time">2:00 PM</div>
+                        <div class="event-info">
+                            <h4>Client Presentation</h4>
+                            <p>Q1 Results Review</p>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-time">4:30 PM</div>
+                        <div class="event-info">
+                            <h4>Sprint Planning</h4>
+                            <p>Planning for next sprint</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Files View -->
+        <div id="files" class="view">
+            <div class="content-header">
+                <h1>Files</h1>
+                <button class="primary-btn">+ Upload</button>
+            </div>
+            <div class="files-container">
+                <div class="file-filters">
+                    <button class="filter-btn active">All Files</button>
+                    <button class="filter-btn">Recent</button>
+                    <button class="filter-btn">Shared</button>
+                    <button class="filter-btn">Starred</button>
+                </div>
+                <table class="files-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Modified</th>
+                            <th>Size</th>
+                            <th>Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="file-icon">📄</span> Project_Proposal.docx</td>
+                            <td>Today, 2:30 PM</td>
+                            <td>245 KB</td>
+                            <td>Sarah Johnson</td>
+                        </tr>
+                        <tr>
+                            <td><span class="file-icon">📊</span> Q1_Report.xlsx</td>
+                            <td>Yesterday, 4:15 PM</td>
+                            <td>1.2 MB</td>
+                            <td>John Smith</td>
+                        </tr>
+                        <tr>
+                            <td><span class="file-icon">🖼️</span> Marketing_Banner.png</td>
+                            <td>Feb 20, 10:00 AM</td>
+                            <td>856 KB</td>
+                            <td>Design Team</td>
+                        </tr>
+                        <tr>
+                            <td><span class="file-icon">📑</span> Meeting_Notes.pdf</td>
+                            <td>Feb 19, 3:45 PM</td>
+                            <td>128 KB</td>
+                            <td>Mike Brown</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Apps View -->
+        <div id="apps" class="view">
+            <div class="content-header">
+                <h1>Apps</h1>
+            </div>
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>Track team performance and metrics</p>
+                    <button class="app-btn">Open</button>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">✅</div>
+                    <h3>Tasks</h3>
+                    <p>Manage projects and to-dos</p>
+                    <button class="app-btn">Open</button>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">📝</div>
+                    <h3>Notes</h3>
+                    <p>Collaborative note-taking</p>
+                    <button class="app-btn">Open</button>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">🎯</div>
+                    <h3>Goals</h3>
+                    <p>Set and track team objectives</p>
+                    <button class="app-btn">Open</button>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">📞</div>
+                    <h3>Video Calls</h3>
+                    <p>Start instant video meetings</p>
+                    <button class="app-btn">Open</button>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">🔔</div>
+                    <h3>Notifications</h3>
+                    <p>Manage your alerts</p>
+                    <button class="app-btn">Open</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
