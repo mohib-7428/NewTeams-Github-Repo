@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewTeams - Configuration</title>
+    <script src="https://res.cdn.office.net/teams-js/2.19.0/js/MicrosoftTeams.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f3f2f1;
+        }
+        .config-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #5B5FC7;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #5B5FC7;
+        }
+    </style>
+</head>
+<body>
+    <div class="config-container">
+        <h2>Configure NewTeams</h2>
+        <p>Customize your NewTeams tab settings</p>
+        
+        <form id="configForm">
+            <div class="form-group">
+                <label for="tabName">Tab Name:</label>
+                <input type="text" id="tabName" value="NewTeams" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="displayMode">Display Mode:</label>
+                <select id="displayMode">
+                    <option value="dashboard">Dashboard</option>
+                    <option value="analytics">Analytics</option>
+                    <option value="settings">Settings</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="notifications">Enable Notifications:</label>
+                <select id="notifications">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Initialize Teams SDK
+        microsoftTeams.app.initialize().then(() => {
+            console.log('Teams SDK initialized for configuration');
+
+            // Enable save button
+            microsoftTeams.pages.config.setValidityState(true);
+
+            // Register save handler
+            microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+                const tabName = document.getElementById('tabName').value;
+                const displayMode = document.getElementById('displayMode').value;
+                const notifications = document.getElementById('notifications').value;
+
+                microsoftTeams.pages.config.setConfig({
+                    entityId: 'newteams-tab',
+                    contentUrl: `${window.location.origin}/tab?mode=${displayMode}`,
+                    suggestedDisplayName: tabName,
+                    websiteUrl: `${window.location.origin}/tab`,
+                    removeUrl: null
+                });
+
+                saveEvent.notifySuccess();
+            });
+
+            // Update validity on input change
+            document.getElementById('configForm').addEventListener('input', () => {
+                const tabName = document.getElementById('tabName').value;
+                microsoftTeams.pages.config.setValidityState(tabName.length > 0);
+            });
+        });
+    </script>
+</body>
+</html>
